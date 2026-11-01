@@ -1,0 +1,4 @@
+2026-11-01T14:00:00.000Z stdout F [INFO] Ingress controller validating incoming mutual TLS traffic...
+2026-11-01T14:00:10.120Z stderr F [ERROR] Internal error occurred: admission webhook "validate.kyverno.svc" failed to call webhook: Post "https://kyverno-svc.kyverno.svc:443/validate": x509: certificate has expired or is not yet valid: current time 2026-11-01T14:00:10Z is after 2026-10-31T23:59:59Z
+2026-11-01T14:00:12.300Z stderr F [ERROR] SSL: CERTIFICATE_VERIFY_FAILED: certificate verify failed: certificate has expired (_ssl.c:1129)
+2026-11-01T14:00:15.500Z stderr F [FATAL] remote error: tls: bad certificate. Pod admission blocked by webhook controller.

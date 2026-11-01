@@ -1,0 +1,9 @@
+{"timestamp":"2026-11-01T11:00:00Z","level":"info","component":"orders-api","message":"Application listening on port 8080"}
+{"timestamp":"2026-11-01T11:00:15Z","level":"info","component":"orders-api","message":"Health check endpoint /healthz status UP"}
+{"timestamp":"2026-11-01T11:01:22Z","level":"error","component":"orders-api","message":"psycopg2.OperationalError: could not connect to server: Connection refused\n\tIs the server running on host \"postgres-cluster.db.svc.cluster.local\" (10.96.12.45) and accepting TCP/IP connections on port 5432?"}
+{"timestamp":"2026-11-01T11:01:23Z","level":"error","component":"orders-api","message":"failed to acquire connection from pool: dial tcp 10.96.12.45:5432: connect: connection refused"}
+{"timestamp":"2026-11-01T11:01:25Z","level":"error","component":"orders-api","message":"Database health check failed: ping postgres timeout after 3000ms"}
+{"timestamp":"2026-11-01T11:01:30Z","level":"warn","component":"kubelet","message":"Readiness probe failed: HTTP probe failed with statuscode: 500"}
+{"timestamp":"2026-11-01T11:01:35Z","level":"warn","component":"kubelet","message":"Pod orders-api-8f964cd7-p2vqm failed readiness probe. Removing endpoints from Service orders-api."}
+{"timestamp":"2026-11-01T11:01:40Z","level":"error","component":"ingress-nginx","message":"502 Bad Gateway while connecting to upstream service orders-api. No healthy endpoints found."}
+{"timestamp":"2026-11-01T11:01:45Z","level":"error","component":"ingress-nginx","message":"upstream connect error or disconnect/reset before headers. reset reason: connection failure"}

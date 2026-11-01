@@ -1,0 +1,14 @@
+2026-11-01T10:15:00.100Z stdout F [INFO] Worker process initialized. Listening for jobs on queue 'transactions'...
+2026-11-01T10:15:10.250Z stdout F [INFO] Batch processing 5000 transactions...
+2026-11-01T10:15:30.400Z stdout F [WARN] High memory consumption detected: Heap usage at 85% (870MB / 1024MB)
+2026-11-01T10:15:45.600Z stdout F [WARN] Heap usage reaching threshold: 96% (985MB / 1024MB). Garbage collection cycle triggered.
+2026-11-01T10:16:02.120Z stderr F java.lang.OutOfMemoryError: Java heap space
+2026-11-01T10:16:02.122Z stderr F 	at java.base/java.util.Arrays.copyOf(Arrays.java:3537)
+2026-11-01T10:16:02.125Z stderr F 	at com.example.processor.TransactionBatch.loadAll(TransactionBatch.java:142)
+2026-11-01T10:16:02.128Z stderr F 	at com.example.processor.Worker.run(Worker.java:55)
+2026-11-01T10:16:03.010Z stderr F [FATAL] Kernel cgroup out of memory: Killed process 42 (java) total-vm:2097152kB, anon-rss:1048576kB, file-rss:0kB, shmem-rss:0kB
+2026-11-01T10:16:03.015Z stderr F Command terminated with exit code 137
+2026-11-01T10:16:15.000Z stdout F 15s  Warning  Unhealthy   pod/transaction-worker-7b56f8f-x9kz   Liveness probe failed: connection refused
+2026-11-01T10:16:20.000Z stdout F 10s  Warning  BackOff     pod/transaction-worker-7b56f8f-x9kz   Back-off 10s restarting failed container transaction-worker
+2026-11-01T10:16:35.000Z stdout F 5s   Warning  BackOff     pod/transaction-worker-7b56f8f-x9kz   Back-off 20s restarting failed container transaction-worker in pod transaction-worker-7b56f8f-x9kz
+2026-11-01T10:17:00.000Z stdout F 1s   Warning  BackOff     pod/transaction-worker-7b56f8f-x9kz   Back-off 40s restarting failed container transaction-worker (CrashLoopBackOff)

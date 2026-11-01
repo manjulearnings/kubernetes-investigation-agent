@@ -1,0 +1,11 @@
+2026-11-01T14:10:00.100Z stdout F [INFO] Payment service initialized on port 8080
+2026-11-01T14:10:05.200Z stdout F [INFO] Processing checkout order #89421 for user user_492
+2026-11-01T14:10:05.450Z stderr F Traceback (most recent call last):
+2026-11-01T14:10:05.451Z stderr F   File "/app/services/checkout.py", line 87, in process_order
+2026-11-01T14:10:05.452Z stderr F     charge = stripe.Charge.create(amount=order.total, currency="usd")
+2026-11-01T14:10:05.453Z stderr F   File "/usr/local/lib/python3.11/site-packages/stripe/api_resources/charge.py", line 32, in create
+2026-11-01T14:10:05.454Z stderr F     return super(Charge, self).create(*args, **kwargs)
+2026-11-01T14:10:05.455Z stderr F stripe.error.AuthenticationError: No API key provided. Set your API key using "stripe.api_key = <API-KEY>". You can generate API keys from the Stripe web interface. See https://stripe.com/api for details, or email support@stripe.com if you have any questions.
+2026-11-01T14:10:06.010Z stderr F [FATAL] Worker terminated unhandled exception in thread Thread-3
+2026-11-01T14:10:15.000Z stdout F 10s  Warning  BackOff     pod/payment-svc-6d58cb9f7-w9k2x   Back-off 10s restarting failed container payment-svc
+

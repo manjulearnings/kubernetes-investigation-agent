@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="card-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="card-cyan" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0e7490"/>
+      <stop offset="100%" stop-color="#155e75"/>
+    </linearGradient>
+    <linearGradient id="card-purple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#581c87"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </linearGradient>
+    <linearGradient id="card-green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="card-amber" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="750" rx="16" fill="url(#bg)"/>
+  
+  <!-- Header Title -->
+  <g transform="translate(50, 45)">
+    <text font-family="Segoe UI, -apple-system, sans-serif" font-size="24" font-weight="bold" fill="#f8fafc">
+      🛡️ Kubernetes Investigation Agent: System Architecture
+    </text>
+    <text y="24" font-family="Segoe UI, -apple-system, sans-serif" font-size="13" fill="#94a3b8">
+      Smart Hybrid Engine: Fast Deterministic Heuristics + Pluggable Google Gemini AI
+    </text>
+  </g>
+
+  <!-- STAGE 1: INGESTION -->
+  <g transform="translate(50, 95)" filter="url(#shadow)">
+    <rect width="900" height="70" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <text x="25" y="28" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#38bdf8" letter-spacing="1">
+      STAGE 1: LOG INGESTION &amp; STREAM PIPING
+    </text>
+    <text x="25" y="50" font-family="Segoe UI, sans-serif" font-size="14" fill="#e2e8f0">
+      kubectl logs pod/name --previous  |  Raw Log Files (.log, .txt)  |  Standard Input (stdin)
+    </text>
+    <rect x="730" y="20" width="145" height="30" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <text x="802" y="40" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#38bdf8">k8s-agent -</text>
+  </g>
+
+  <!-- Line from Stage 1 to Stage 2 -->
+  <path d="M 500 165 L 500 195" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- STAGE 2: PARSER -->
+  <g transform="translate(50, 200)" filter="url(#shadow)">
+    <rect width="900" height="95" rx="10" fill="url(#card-blue)" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="25" y="28" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#93c5fd" letter-spacing="1">
+      STAGE 2: MULTI-FORMAT NORMALIZATION (k8s_agent/parser.py)
+    </text>
+    <text x="25" y="52" font-family="Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">
+      KubernetesLogParser
+    </text>
+    <text x="25" y="74" font-family="Segoe UI, sans-serif" font-size="13" fill="#cbd5e1">
+      • CRI-O / containerd runtime lines  • Structured JSON (Zap/Logrus)  • K8s Events  • Multi-line Stack Traces (Java, Python, Go)
+    </text>
+  </g>
+
+  <!-- Line from Stage 2 to Stage 3 -->
+  <path d="M 500 295 L 500 325" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- STAGE 3: CORE ENGINE -->
+  <g transform="translate(50, 330)" filter="url(#shadow)">
+    <rect width="900" height="150" rx="10" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+    <text x="25" y="26" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#38bdf8" letter-spacing="1">
+      STAGE 3: CORRELATION &amp; CAUSAL DEDUCTION (k8s_agent/engine.py)
+    </text>
+
+    <!-- Sub-boxes inside Engine -->
+    <g transform="translate(25, 42)">
+      <rect width="200" height="85" rx="6" fill="#1e293b" stroke="#334155"/>
+      <text x="15" y="24" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#e2e8f0">1. Signature Match</text>
+      <text x="15" y="44" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">Catalog of 12+ rules</text>
+      <text x="15" y="60" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">in patterns.py</text>
+      <text x="15" y="76" font-family="Consolas, monospace" font-size="10" fill="#38bdf8">OOM, DB, DNS, RBAC</text>
+    </g>
+
+    <g transform="translate(245, 42)">
+      <rect width="200" height="85" rx="6" fill="#1e293b" stroke="#334155"/>
+      <text x="15" y="24" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#e2e8f0">2. Causal Scoring</text>
+      <text x="15" y="44" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">Weight (OOM 95 vs 40)</text>
+      <text x="15" y="60" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">+ Temporal Precedence</text>
+      <text x="15" y="76" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">+ Stack Trace Bonus</text>
+    </g>
+
+    <g transform="translate(465, 42)">
+      <rect width="195" height="85" rx="6" fill="#1e293b" stroke="#334155"/>
+      <text x="15" y="24" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#e2e8f0">3. Timeline Builder</text>
+      <text x="15" y="44" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">• Trigger / Inception</text>
+      <text x="15" y="60" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">• Cascading Impact</text>
+      <text x="15" y="76" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">• Kubelet Intervention</text>
+    </g>
+
+    <g transform="translate(680, 42)">
+      <rect width="195" height="85" rx="6" fill="#1e293b" stroke="#334155"/>
+      <text x="15" y="24" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#e2e8f0">4. Auto Remediation</text>
+      <text x="15" y="44" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">Infers deployment</text>
+      <text x="15" y="60" font-family="Segoe UI, sans-serif" font-size="11" fill="#94a3b8">and pod name to write</text>
+      <text x="15" y="76" font-family="Consolas, monospace" font-size="10" fill="#34d399">kubectl set resources</text>
+    </g>
+  </g>
+
+  <!-- DECISION BRANCH: Deterministic vs Gemini AI -->
+  <!-- Left Path: Known Pattern -->
+  <path d="M 275 480 L 275 520" stroke="#34d399" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  <text x="210" y="505" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#34d399">Pattern Matched</text>
+
+  <!-- Right Path: Unknown Error -->
+  <path d="M 725 480 L 725 520" stroke="#c084fc" stroke-width="2.5" marker-end="url(#arrow-purple)"/>
+  <text x="735" y="505" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#c084fc">Unclassified / Custom Error</text>
+
+  <!-- BRANCH A: Local Deterministic Engine -->
+  <g transform="translate(50, 525)" filter="url(#shadow)">
+    <rect width="425" height="85" rx="10" fill="url(#card-green)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="20" y="26" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#a7f3d0">
+      ⚡ PATH A: LOCAL DETERMINISTIC ENGINE
+    </text>
+    <text x="20" y="48" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">
+      Instant Diagnosis in ~1.5ms
+    </text>
+    <text x="20" y="68" font-family="Segoe UI, sans-serif" font-size="11" fill="#d1fae5">
+      100% Offline • Free • Air-gapped privacy • Zero API keys needed
+    </text>
+  </g>
+
+  <!-- BRANCH B: Google Gemini AI -->
+  <g transform="translate(525, 525)" filter="url(#shadow)">
+    <rect width="425" height="85" rx="10" fill="url(#card-purple)" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="20" y="26" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#e9d5ff">
+      ✨ PATH B: GOOGLE GEMINI AI (gemini.py)
+    </text>
+    <text x="20" y="48" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">
+      Diagnoses ANY Error via gemini-1.5-flash
+    </text>
+    <text x="20" y="68" font-family="Segoe UI, sans-serif" font-size="11" fill="#f3e8ff">
+      Reads custom stack traces • Explains bug • Writes tailored kubectl fixes
+    </text>
+  </g>
+
+  <!-- Lines from Branches to Reporters -->
+  <path d="M 262 610 L 262 640 L 485 640 L 485 650" stroke="#34d399" stroke-width="2"/>
+  <path d="M 737 610 L 737 640 L 515 640 L 515 650" stroke="#c084fc" stroke-width="2"/>
+  <path d="M 500 640 L 500 655" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- STAGE 4: REPORTERS -->
+  <g transform="translate(50, 660)" filter="url(#shadow)">
+    <rect width="900" height="65" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <text x="25" y="24" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#38bdf8" letter-spacing="1">
+      STAGE 4: UNIFIED MULTI-FORMAT REPORTERS (k8s_agent/reporters/)
+    </text>
+
+    <g transform="translate(25, 34)">
+      <text font-family="Segoe UI, sans-serif" font-size="13" fill="#ffffff">
+        <tspan font-weight="bold" fill="#38bdf8">🖥️ Terminal UI</tspan> (rich tables &amp; badges)
+        <tspan dx="30" font-weight="bold" fill="#34d399">📝 Markdown</tspan> (Jira / GitHub post-mortems)
+        <tspan dx="30" font-weight="bold" fill="#fbbf24">🤖 JSON</tspan> (CI/CD alerting pipelines)
+      </text>
+    </g>
+  </g>
+</svg>

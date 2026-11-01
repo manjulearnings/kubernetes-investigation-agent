@@ -1,0 +1,7 @@
+2026-11-01 12:30:00 [INFO] [kubelet] Starting container payment-gateway in pod payment-gateway-5c4d6f78-q9kld
+2026-11-01 12:30:02 [ERROR] [kubelet] Error: CreateContainerConfigError: configmap "payment-secrets-cfg" not found
+2026-11-01 12:30:05 [WARN] [kubelet] Error syncing pod payment-gateway-5c4d6f78-q9kld ("payment-gateway-5c4d6f78-q9kld_default"): CreateContainerConfigError
+2026-11-01 12:30:20 [INFO] [auth-proxy] Attempting to reach upstream payment gateway at payment-gateway.default.svc.cluster.local:8080
+2026-11-01 12:30:22 [ERROR] [auth-proxy] lookup payment-gateway.default.svc.cluster.local on 10.96.0.10:53: no such host
+2026-11-01 12:30:23 [ERROR] [auth-proxy] server can't find payment-gateway.default.svc.cluster.local: NXDOMAIN
+2026-11-01 12:30:25 [ERROR] [auth-proxy] dial tcp: i/o timeout while attempting DNS resolution for upstream payment-gateway

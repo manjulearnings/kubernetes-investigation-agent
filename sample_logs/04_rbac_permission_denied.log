@@ -1,0 +1,5 @@
+2026-11-01T13:45:01.000Z stdout F [INFO] Starting cert-rotator-operator controller v2.4.1
+2026-11-01T13:45:02.100Z stdout F [INFO] Connecting to Kubernetes API server at https://kubernetes.default.svc:443
+2026-11-01T13:45:03.250Z stderr F E1101 13:45:03.250123 1 reflector.go:140] pkg/mod/k8s.io/client-go@v0.28.2/tools/cache/reflector.go: Failed to watch *v1.Secret: secrets is forbidden: User "system:serviceaccount:security:cert-rotator-sa" cannot list resource "secrets" in API group "" at the cluster scope
+2026-11-01T13:45:04.100Z stderr F [ERROR] HTTP status 403 Forbidden: system:serviceaccount:security:cert-rotator-sa cannot list resource "secrets" in the namespace "prod-workloads"
+2026-11-01T13:45:05.000Z stderr F [FATAL] RBAC: access denied. Operator cannot reconcile certificates without Secret read permissions.

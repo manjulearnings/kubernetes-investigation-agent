@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "k8s-investigation-agent"
+version = "1.0.0"
+description = "Autonomous Kubernetes investigation agent for deep log analysis and root-cause evidence extraction."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pydantic>=2.0.0",
+    "rich>=13.0.0",
+    "httpx>=0.24.0",
+]
+
+[project.scripts]
+k8s-agent = "k8s_agent.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["k8s_agent*"]
