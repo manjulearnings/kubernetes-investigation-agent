@@ -1,6 +1,12 @@
 # 🛡️ Kubernetes Investigation Agent in Python
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)](pyproject.toml)
+[![Docs](https://img.shields.io/badge/docs-HOWTO.md-green.svg)](HOWTO.md)
+
 An autonomous Kubernetes investigation agent designed for DevOps, SREs, and Platform Engineers. The agent ingests Kubernetes pod logs, event streams, or cluster logs, performs deep causal failure analysis, and produces a structured investigation report backed by **empirical supporting evidence** (exact log lines, timestamps, and verbatim snippets).
+
+👉 **[Read the Step-by-Step HOWTO & Usage Recipes Guide (HOWTO.md)](HOWTO.md)**
 
 ---
 
@@ -33,7 +39,8 @@ An autonomous Kubernetes investigation agent designed for DevOps, SREs, and Plat
 
 ![Architecture](docs/architecture.svg)
 
-> 📖 **Full Architectural Specifications & Sequence Diagrams**: For deep-dive diagrams, sequence interactions, and component specifications, see the **[docs/README.md](docs/README.md)**.
+> 📖 **Full Architectural Specifications & Sequence Diagrams**: For deep-dive diagrams, sequence interactions, and component specifications, see the **[docs/README.md](docs/README.md)**.  
+> 💡 **Task-by-Task Cookbook & Recipes**: For step-by-step usage guides, live `kubectl` piping, CI/CD integration, and batch scripts, see the **[HOWTO.md](HOWTO.md)**.
 
 ```mermaid
 flowchart TD
