@@ -51,7 +51,7 @@ flowchart TD
     D --> Engine
     Engine --> J["InvestigationReport (Pydantic Model)"]
     J --> K{"Unclassified Error & Gemini Key Configured?"}
-    K -- Yes --> L["Gemini AI Investigator (gemini-2.0-flash)"]
+    K -- Yes --> L["Gemini AI Investigator (gemini-3.8-flash / gemini-3-flash)"]
     L --> M["Enriched Report with Custom Diagnosis & Fix"]
     K -- No --> M
     M --> N["Reporters"]

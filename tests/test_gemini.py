@@ -67,10 +67,10 @@ class TestGeminiInvestigation(unittest.TestCase):
         self.assertIn("kubectl set env deployment/payment-svc", report.remediation_plan[0].kubectl_command)
 
     def test_default_model_is_modern(self):
-        # Verify default model is gemini-2.0-flash, not 1.5
+        # Verify default model is gemini-3.8-flash
         from k8s_agent.gemini import GeminiInvestigator
         investigator = GeminiInvestigator()
-        self.assertEqual(investigator.model, "gemini-2.0-flash")
+        self.assertEqual(investigator.model, "gemini-3.8-flash")
 
     @patch("k8s_agent.gemini.httpx.Client")
     def test_latest_model_auto_discovery(self, mock_client_cls):
@@ -81,16 +81,15 @@ class TestGeminiInvestigation(unittest.TestCase):
         mock_resp.status_code = 200
         mock_resp.json.return_value = {
             "models": [
-                {"name": "models/gemini-1.5-flash"},
-                {"name": "models/gemini-2.0-flash"},
-                {"name": "models/gemini-2.5-flash"},
+                {"name": "models/gemini-3-flash"},
+                {"name": "models/gemini-3.8-flash"},
             ]
         }
         mock_client.get.return_value = mock_resp
 
         from k8s_agent.gemini import GeminiInvestigator
         investigator = GeminiInvestigator(api_key="test-key", model="latest")
-        self.assertEqual(investigator.model, "gemini-2.5-flash")
+        self.assertEqual(investigator.model, "gemini-3.8-flash")
 
 
 if __name__ == "__main__":

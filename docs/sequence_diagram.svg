@@ -171,7 +171,7 @@
       <!-- Step B3: Gemini calls Google Cloud -->
       <line x1="670" y1="105" x2="795" y2="105" stroke="#ec4899" stroke-width="2" marker-end="url(#seq-arrow)"/>
       <text x="732" y="97" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#f472b6">
-        HTTPS POST gemini-1.5-flash (Stack Trace + Schema)
+        HTTPS POST gemini-3.8-flash (Stack Trace + Schema)
       </text>
 
       <!-- Step B4: Google Cloud responds -->

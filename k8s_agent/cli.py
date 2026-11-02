@@ -51,7 +51,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--gemini-model",
         type=str,
         default=None,
-        help="Gemini model to use (default: gemini-2.0-flash, or pass 'latest' for auto-discovery).",
+        help="Gemini model to use (default: gemini-3.8-flash, or pass 'latest' for auto-discovery).",
     )
     parser.add_argument(
         "--force-gemini",

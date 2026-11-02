@@ -43,7 +43,7 @@ flowchart TD
     K -- Yes --> L["⚡ Path A: Local Heuristic Engine\n(1.5ms instant diagnosis, 100% private & free)"]
     
     K -- No --> M{"GEMINI_API_KEY Configured?"}
-    M -- Yes --> N["✨ Path B: Google Gemini AI (gemini.py)\n(gemini-2.0-flash / latest diagnoses custom stack trace)"]
+    M -- Yes --> N["✨ Path B: Google Gemini AI (gemini.py)\n(gemini-3.8-flash / latest diagnoses custom stack trace)"]
     M -- No --> O["🛡️ Local Safety Net\n(Pins down line number, displays setup tip)"]
     
     L --> P["Unified Reporters (reporters/)"]
@@ -97,7 +97,8 @@ sequenceDiagram
         opt If GEMINI_API_KEY is configured
             Agent->>Gemini: diagnose_unknown_failure(report)
             Note over Gemini: Packages error snippet, line numbers & timeline
-            Gemini->>Google: HTTPS POST /gemini-1.5-flash:generateContent
+            Gemini->>Google: HTTPS POST /gemini-3.8-flash:generateContent
+            Note over Gemini: Fallback to gemini-3-flash (n-1) if 3.8 is unavailable
             Google-->>Gemini: Returns structured JSON diagnosis & remediation
             Gemini->>Gemini: Overwrites generic placeholder with AI diagnosis
             Gemini-->>Agent: Returns enriched InvestigationReport
@@ -131,7 +132,7 @@ sequenceDiagram
 
 ### Path B: Google Gemini AI Layer (For Custom / Unknown Errors)
 - **When it runs**: Automatically invoked when an unclassified application error or runtime panic occurs (and a `GEMINI_API_KEY` is present).
-- **Model**: `gemini-2.0-flash` (with dynamic auto-discovery if set to `'latest'`).
+- **Model**: `gemini-3.8-flash` (with n-1 fallback `gemini-3-flash`, and dynamic auto-discovery if set to `'latest'`).
 - **Payload Optimization**: Does **not** send thousands of irrelevant log lines. Only the extracted, high-signal stack trace, line numbers, and timeline context are transmitted.
 - **Output**: Returns a concrete Root Cause Title, technical explanation, and copy-pasteable remediation steps with deployment names automatically substituted.
 
@@ -144,7 +145,7 @@ sequenceDiagram
 | [`k8s_agent/parser.py`](../k8s_agent/parser.py) | `KubernetesLogParser` | Ingests raw logs, normalizes timestamps, extracts severity levels, identifies pod names, and statefully stitches multi-line stack traces. |
 | [`k8s_agent/patterns.py`](../k8s_agent/patterns.py) | `FailureSignature`, `K8S_SIGNATURES` | The domain rulebook: defines regex signatures, root cause weights (40 to 95), explanations, and default mitigation steps. |
 | [`k8s_agent/engine.py`](../k8s_agent/engine.py) | `InvestigationEngine` | Core correlation engine: scores candidate causes using temporal precedence, builds chronological timelines, and infers Deployment names. |
-| [`k8s_agent/gemini.py`](../k8s_agent/gemini.py) | `GeminiInvestigator` | Google Gemini AI integration: formats structured prompts, calls `gemini-1.5-flash`, and injects custom fixes for unknown errors. |
+| [`k8s_agent/gemini.py`](../k8s_agent/gemini.py) | `GeminiInvestigator` | Google Gemini AI integration: formats structured prompts, calls `gemini-3.8-flash` (or `gemini-3-flash`), and injects custom fixes for unknown errors. |
 | [`k8s_agent/models.py`](../k8s_agent/models.py) | `InvestigationReport`, `LogEntry`, `Evidence` | Strongly typed Pydantic models defining reports, timeline events, evidence snippets, and remediation actions. |
 | [`k8s_agent/agent.py`](../k8s_agent/agent.py) | `KubernetesInvestigationAgent` | Façade coordinating parser, engine, Gemini AI, and reporters into a clean, reusable API. |
 | [`k8s_agent/cli.py`](../k8s_agent/cli.py) | `main()`, `build_parser()` | Command-line interface supporting file paths, stdin piping (`kubectl logs ... | k8s-agent -`), and format selection. |
