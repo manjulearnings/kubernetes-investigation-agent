@@ -62,6 +62,41 @@ flowchart TD
 
 ---
 
+## 📋 Prerequisites & System Requirements
+
+Before cloning and running the agent, ensure the following requirements are met:
+
+### 1. System Requirements
+| Requirement | Specification | Notes |
+| :--- | :--- | :--- |
+| **Operating System** | Linux, macOS, or Windows | Cross-platform compatible (Bash, Zsh, PowerShell). |
+| **Python** | **Python 3.9+** (3.10 – 3.12 recommended) | Check with `python --version` or `python3 --version`. |
+| **Package Manager** | `pip` (or `poetry`, `conda`, `uv`) | Standard Python package installer. |
+| **Virtual Environment** | Recommended (`venv` or `conda`) | Keeps dependencies isolated from system Python. |
+
+### 2. Optional CLI Tools & Utilities
+- **`kubectl`** *(Optional)*: Recommended if you want to pipe live cluster pod/container logs directly into the agent:
+  ```bash
+  kubectl logs deployment/checkoutservice --previous | k8s-agent -
+  ```
+
+### 3. Network & Connectivity
+- **Offline / Local Mode (Deterministic)**: **100% Air-Gapped & Offline Safe**. Zero network connectivity, zero cloud accounts, and zero API keys are required for analyzing standard infrastructure failures (OOM, DNS, DB outage, RBAC, etc.).
+- **AI Mode (Google Gemini)**: Requires outbound HTTPS (Port 443) to `https://generativelanguage.googleapis.com`.
+
+### 4. API Keys & Credentials (For AI Diagnosis Only)
+- **Google Gemini API Key** *(Optional)*: Needed only if you want AI to automatically diagnose unclassified, custom application stack traces:
+  ```bash
+  # Linux/macOS:
+  export GEMINI_API_KEY="your-gemini-api-key"
+  
+  # Windows PowerShell:
+  $env:GEMINI_API_KEY="your-gemini-api-key"
+  ```
+  *(Obtain a free key from [Google AI Studio](https://aistudio.google.com/app/apikey)).*
+
+---
+
 ## 🚀 Quickstart
 
 ### 1. Installation
